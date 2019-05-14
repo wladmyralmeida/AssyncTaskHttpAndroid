@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <TextView
+        android:id="@+id/textTipoImovel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15px"
+        android:text="Tipo de Imóvel" />
+
+    <EditText
+        android:id="@+id/campoTipoImovel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15px" />
+
+    <TextView
+        android:id="@+id/textTipoNegociacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15px"
+        android:text="Tipo da Negociação" />
+
+    <EditText
+        android:id="@+id/campoTipoNegociacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15px" />
+
+    <TextView
+        android:id="@+id/textObs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15px"
+        android:text="Observação" />
+
+    <EditText
+        android:id="@+id/campoObs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Suíte">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/campoSuite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Suíte"
+                android:inputType="numberDecimal"
+                android:padding="15dp"
+                android:textSize="16sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Quarto">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/campoQuarto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Quarto"
+                android:inputType="numberDecimal"
+                android:padding="15dp"
+                android:textSize="16sp" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="89dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Banheiro">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/campoBanheiro"
+                android:layout_width="107dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Banheiro"
+                android:inputType="numberDecimal"
+                android:padding="15dp"
+                android:textSize="16sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Área">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/campoArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Área (m)"
+                android:inputType="number|numberDecimal"
+                android:padding="15dp"
+                android:textSize="16sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Valor">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/campoValor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200px"
+            android:layout_marginRight="200px"
+            android:layout_marginBottom="15px"
+            android:hint="Valor (R$)"
+            android:inputType="numberDecimal"
+            android:padding="25px" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <RadioGroup
+        android:id="@+id/idRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/radioGroupCidade"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10px"
+            android:orientation="horizontal"
+            android:padding="10px">
+
+            <RadioButton
+                android:id="@+id/radioDisponivel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:text="Disponível" />
+
+            <RadioButton
+                android:id="@+id/radioOcupado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:text="Ocupado" />
+
+            <RadioButton
+                android:id="@+id/radioOutro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:text="Outro" />
+
+        </RadioGroup>
+
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15px"
+        android:text="Cidade"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinnerCidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/piotxt5"
+        android:drawSelectorOnTop="true"
+        android:dropDownVerticalOffset="-53dp"
+        android:spinnerMode="dropdown" />
+
+
+    <CheckBox
+        android:id="@+id/checkProprietario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proprietário" />
+
+    <Button
+        android:id="@+id/botaoSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Salvar" />
+
+</LinearLayout>
