@@ -50,11 +50,11 @@ public class ExecuteTaskPut extends AsyncTask<Imovel, Void, Imovel> {
             parametros.put("qtdQuartos", String.valueOf(imovel.getQtdQuartos()));
             parametros.put("area", String.valueOf(imovel.getArea()));
 
-            String[] repostaPost = Requisicoes.post(URL, parametros);
-            Log.e("Teste", repostaPost[1]);
+            String[] respostaPut = Requisicoes.put(URL, parametros);
+            Log.e("Teste", respostaPut[1]);
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
-            return gson.fromJson(repostaPost[1], Imovel.class);
+            return gson.fromJson(respostaPut[1], Imovel.class);
 
         } catch (Exception e) {
             e.printStackTrace();

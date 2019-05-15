@@ -208,6 +208,7 @@
         android:id="@+id/botaoSalvar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="salvarImovel"
         android:text="Salvar" />
 
 </LinearLayout>

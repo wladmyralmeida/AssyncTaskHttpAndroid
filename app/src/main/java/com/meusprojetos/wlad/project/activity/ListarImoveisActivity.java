@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -17,6 +18,7 @@ import com.meusprojetos.wlad.project.model.Imovel;
 import com.meusprojetos.wlad.project.web.ExecuteTaskDelete;
 import com.meusprojetos.wlad.project.web.ExecuteTaskGet;
 import com.meusprojetos.wlad.project.web.ExecuteTaskPost;
+import com.meusprojetos.wlad.project.web.ExecuteTaskPut;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,7 @@ public class ListarImoveisActivity extends DefaultActivity {
         recyclerImoveis.setLayoutManager(new LinearLayoutManager(this));
         recyclerImoveis.setHasFixedSize(true);
         adapterImoveis = new ImovelAdapter(imoveis, this);  //list imoveiss
-        recyclerImoveis.setAdapter( adapterImoveis );
+        recyclerImoveis.setAdapter(adapterImoveis);
 
         //Recuperar Imóveis
         recuperarImoveis();
@@ -94,17 +96,20 @@ public class ListarImoveisActivity extends DefaultActivity {
     }
 
     private void recuperarImoveis() {
+        for(Imovel i : imoveis){
+
+        }
         new ExecuteTaskGet(ListarImoveisActivity.this).execute(i);
     }
 
-    private void inicializarComponentes(){
+    private void inicializarComponentes() {
         recyclerImoveis = findViewById(R.id.recyclerImoveis);
     }
 
 
     public void deletarImovel(Long idImovel) {
 
-        if(i != null && i.getIdImovel().equals(idImovel)){
+        if (i != null && i.getIdImovel().equals(idImovel)) {
             imoveis.remove(i);
             imprimirMensagem("Deletado");
         }
@@ -112,15 +117,23 @@ public class ListarImoveisActivity extends DefaultActivity {
     }
 
     public void atualizarImovel(Imovel i) {
-        imoveis.remove(i.getIdImovel());
+        for (Imovel imovel : imoveis) {
+            if (imovel.getIdImovel() != null && imovel.getIdImovel() == i.getIdImovel()) {
+                imoveis.remove(i.getIdImovel());
+                MainActivity main = new MainActivity();
+                main.salvarImovel();
 
-
-        //
-        //
-        //        //
+                new ExecuteTaskPut(main).execute(i);
+                imprimirMensagem("Imóvel Atualizado");
+                Log.e("Teste", "Erro ao atualizar imóvel");
+            } else {
+                Log.e("Teste", "Erro ao buscar imóvel");
+                imprimirMensagem("Imóvel não encontrado");
+            }
+        }
 
         imoveis.add(i);
-        imprimirMensagem("Atualizado");
+        imprimirMensagem("Imóvel Atualizado");
     }
 
 }

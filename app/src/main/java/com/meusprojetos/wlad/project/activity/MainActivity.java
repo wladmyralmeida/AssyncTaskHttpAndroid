@@ -30,8 +30,6 @@ public class MainActivity extends DefaultActivity {
     private TextInputEditText campoValor;
     private TextInputEditText campoArea;
 
-    private Button botaoSalvar;
-
     private CheckBox checkProprietario;
     private RadioButton radioDisponivel;
     private RadioButton radioOcupado;
@@ -55,8 +53,6 @@ public class MainActivity extends DefaultActivity {
         campoTipoImovel = findViewById(R.id.campoTipoImovel);
         campoTipoNegociacao = findViewById(R.id.campoTipoNegociacao);
         campoObservacao = findViewById(R.id.campoObs);
-
-        botaoSalvar = findViewById(R.id.botaoSalvar);
 
         campoQtdSuite = findViewById(R.id.campoSuite);
         campoQtdQuarto = findViewById(R.id.campoQuarto);
@@ -103,115 +99,112 @@ public class MainActivity extends DefaultActivity {
                 alerta.show();
             }
         });*/
+    }
 
-        botaoSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    public Imovel salvarImovel() {
 
-                //Recuperar textos dos campos
-                String banheiro = campoQtdBanheiro.getText().toString();
-                String quarto = campoQtdQuarto.getText().toString();
-                String suite = campoQtdSuite.getText().toString();
-                String tipoNegociacao = campoTipoNegociacao.getText().toString();
-                String tipoImovel = campoTipoImovel.getText().toString();
-                String obs = campoObservacao.getText().toString();
-                String area = campoArea.getText().toString();
-                String valor = campoValor.getText().toString();
+        //Recuperar textos dos campos
+        String banheiro = campoQtdBanheiro.getText().toString();
+        String quarto = campoQtdQuarto.getText().toString();
+        String suite = campoQtdSuite.getText().toString();
+        String tipoNegociacao = campoTipoNegociacao.getText().toString();
+        String tipoImovel = campoTipoImovel.getText().toString();
+        String obs = campoObservacao.getText().toString();
+        String area = campoArea.getText().toString();
+        String valor = campoValor.getText().toString();
 
-                String proprietario = checkProprietario.getText().toString();
-                String cidade = String.valueOf(spinnerCidade.getSelectedItemPosition());
+        String proprietario = checkProprietario.getText().toString();
+        String cidade = String.valueOf(spinnerCidade.getSelectedItemPosition());
 
-                String ocupacao;
-                if (radioDisponivel.isChecked()) {
-                    ocupacao = radioDisponivel.getText().toString();
-                } else if (radioOcupado.isChecked()) {
-                    ocupacao = radioOcupado.getText().toString();
-                } else {
-                    ocupacao = radioOutro.getText().toString();
-                }
+        String ocupacao;
+        if (radioDisponivel.isChecked()) {
+            ocupacao = radioDisponivel.getText().toString();
+        } else if (radioOcupado.isChecked()) {
+            ocupacao = radioOcupado.getText().toString();
+        } else {
+            ocupacao = radioOutro.getText().toString();
+        }
 
-                if (!area.isEmpty()) {
+        if (!area.isEmpty()) {
 
-                    if (!quarto.isEmpty()) {
+            if (!quarto.isEmpty()) {
 
-                        if (!suite.isEmpty()) {
+                if (!suite.isEmpty()) {
 
-                            if (!banheiro.isEmpty()) {
+                    if (!banheiro.isEmpty()) {
 
-                                if (!ocupacao.isEmpty()) {
+                        if (!ocupacao.isEmpty()) {
 
-                                    if (!cidade.isEmpty()) {
+                            if (!cidade.isEmpty()) {
 
-                                        if (!proprietario.isEmpty()) {
+                                if (!proprietario.isEmpty()) {
 
-                                            if (!valor.isEmpty()) {
+                                    if (!valor.isEmpty()) {
 
-                                                if (!tipoImovel.isEmpty()) {
+                                        if (!tipoImovel.isEmpty()) {
 
-                                                    if (!tipoNegociacao.isEmpty()) {
+                                            if (!tipoNegociacao.isEmpty()) {
 
-                                                        if (!obs.isEmpty()) {
+                                                if (!obs.isEmpty()) {
 
-                                                            try {
+                                                    try {
 
-                                                                i = new Imovel();
+                                                        i = new Imovel();
 
-                                                                i.setObs(obs);
-                                                                i.setTipoImovel(tipoImovel);
-                                                                i.setTipoNegociacao(tipoNegociacao);
-                                                                i.setValor(Double.parseDouble(valor));
-                                                                i.setProprietario(proprietario);
-                                                                i.setCidade(Integer.parseInt(cidade));
-                                                                i.setOcupacao(ocupacao);
-                                                                i.setQtdBanheiro(Integer.parseInt(banheiro));
-                                                                i.setQtdSuite(Integer.parseInt(suite));
-                                                                i.setQtdQuartos(Integer.parseInt(quarto));
-                                                                i.setArea(Double.parseDouble(area));
+                                                        i.setObs(obs);
+                                                        i.setTipoImovel(tipoImovel);
+                                                        i.setTipoNegociacao(tipoNegociacao);
+                                                        i.setValor(Double.parseDouble(valor));
+                                                        i.setProprietario(proprietario);
+                                                        i.setCidade(Integer.parseInt(cidade));
+                                                        i.setOcupacao(ocupacao);
+                                                        i.setQtdBanheiro(Integer.parseInt(banheiro));
+                                                        i.setQtdSuite(Integer.parseInt(suite));
+                                                        i.setQtdQuartos(Integer.parseInt(quarto));
+                                                        i.setArea(Double.parseDouble(area));
 
-                                                                new ExecuteTaskPost(MainActivity.this).execute(i);
+                                                        new ExecuteTaskPost(MainActivity.this).execute(i);
 
-
-                                                            } catch (Exception e) {
-                                                                Log.e("Teste", Log.getStackTraceString(e));
-                                                            }
-                                                        } else {
-                                                            imprimirMensagem("Observação Vazia");
-                                                        }
-
-                                                    } else {
-                                                        imprimirMensagem("Tipo de Negociação inválido");
+                                                    } catch (Exception e) {
+                                                        Log.e("Teste", Log.getStackTraceString(e));
                                                     }
-
                                                 } else {
-                                                    imprimirMensagem("Tipo de Imóvel inválido");
+                                                    imprimirMensagem("Observação Vazia");
                                                 }
 
                                             } else {
-                                                imprimirMensagem("Valor inválido");
+                                                imprimirMensagem("Tipo de Negociação inválido");
                                             }
+
                                         } else {
-                                            imprimirMensagem("Quarto tem formato inválido");
+                                            imprimirMensagem("Tipo de Imóvel inválido");
                                         }
+
                                     } else {
-                                        imprimirMensagem("Cidade tem formato inválido");
+                                        imprimirMensagem("Valor inválido");
                                     }
                                 } else {
-                                    imprimirMensagem("Ocupação tem formato inválido");
+                                    imprimirMensagem("Quarto tem formato inválido");
                                 }
                             } else {
-                                imprimirMensagem("Banheiro tem formato inválido");
+                                imprimirMensagem("Cidade tem formato inválido");
                             }
                         } else {
-                            imprimirMensagem("Suíte tem formato inválido");
+                            imprimirMensagem("Ocupação tem formato inválido");
                         }
                     } else {
-                        imprimirMensagem("Quarto tem formato inválido");
+                        imprimirMensagem("Banheiro tem formato inválido");
                     }
                 } else {
-                    imprimirMensagem("Área tem formato inválido");
+                    imprimirMensagem("Suíte tem formato inválido");
                 }
+            } else {
+                imprimirMensagem("Quarto tem formato inválido");
             }
-        });
+        } else {
+            imprimirMensagem("Área tem formato inválido");
+        }
+        return i;
     }
 
     public void adicionarImovel(Imovel i) {
